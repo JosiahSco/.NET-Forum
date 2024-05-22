@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Threddit.Models.Post>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<a asp-controller="Post" asp-action="CreatePost" class="btn btn-primary mb-2">Create New Post</a>
+<div class="post-container">
+@foreach (var post in Model)
+{
+    <div>
+        <h4>@post.Title</h4>
+        <p>Posted by: @post.CreatedBy</p>
+        <p>@post.Body</p>
+        <a asp-controller="Post" asp-action="Details" asp-route-id="@post.Id">View Post</a>
+        <hr />
+    </div>
+}
+</div>
