@@ -13,11 +13,13 @@
 <form asp-controller="Comment" asp-action="CreateComment" class="mb-3">
     <input type="hidden" name="PostId" value="@Model.Id"/>
     <textarea name="Body"  class="form-control mb-2" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" ></textarea>
-    <button type="submit" class="btn btn-primary">Submit Comment</button>
+    <div class="d-flex w-100 justify-content-end">
+        <button type="submit" class="btn btn-primary">Submit Comment</button>
+    </div>
 </form>
 @foreach (var comment in ViewData["Comments"] as List<Comment>)
 {
-    <div class="bg-body-secondary p-2 mb-3">
+    <div class="bg-body-secondary p-2 mb-3 rounded">
         <div class="w-100 d-flex justify-content-between">
             <p><i class="fa-solid fa-user-tie fa-lg me-2"></i>@Model.CreatedBy
             <p><i class="fa-solid fa-calendar-day fa-lg m-2"></i>@Model.CreatedAt</p>
