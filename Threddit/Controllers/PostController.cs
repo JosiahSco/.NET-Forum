@@ -38,6 +38,15 @@ namespace Threddit.Controllers
         public IActionResult Details(int id)
         {
             Post post = _context.Posts.FirstOrDefault(p => p.Id == id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            // Dont really like this, maybe pass a tuple of <Post, List<Comment>> to the view?
+            List<Comment> comments = _context.Comments.Where(c => c.PostId == id).ToList();
+            ViewData["Comments"] = comments;
+
             return View(post);
         }
     }
