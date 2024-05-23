@@ -33,5 +33,12 @@ namespace Threddit.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            Post post = _context.Posts.FirstOrDefault(p => p.Id == id);
+            return View(post);
+        }
     }
 }
