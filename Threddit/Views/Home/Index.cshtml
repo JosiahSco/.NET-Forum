@@ -3,16 +3,29 @@
     ViewData["Title"] = "Home Page";
 }
 
-<a asp-controller="Post" asp-action="CreatePost" class="btn btn-primary mb-2">Create New Post</a>
-<div class="post-container">
+<a asp-controller="Post" asp-action="CreatePost" class="btn btn-primary mb-3">Create New Post</a>
+<div id="post-container">
 @foreach (var post in Model)
 {
     <div>
-        <h4>@post.Title</h4>
-        <p>Posted by: @post.CreatedBy</p>
-        <p>@post.Body</p>
-        <a asp-controller="Post" asp-action="Details" asp-route-id="@post.Id">View Post</a>
-        <hr />
+        <h4 class="w-5">@post.Title</h4>
+        <div class="d-flex justify-content-start flex-wrap">
+            <p class="mb-0 me-3 w d-flex align-items-center"><i class="fa-solid fa-user-tie me-2"></i>@post.CreatedBy</p>
+            <p class="mb-0 d-flex align-items-center">
+                <i class="fa-solid fa-calendar-day me-2"></i>
+                @post.CreatedAt.ToShortDateString() @post.CreatedAt.ToShortTimeString().PadLeft(8, '0')
+            </p>
+        </div>
+        <div>
+            <p>
+                    @{
+                        string trimmedBody = post.Body.Length > 100 ? post.Body.Substring(0, 100) + "..." : post.Body;
+                        @trimmedBody
+                }
+             </p>
+            <a asp-controller="Post" asp-action="Details" asp-route-id="@post.Id">View Post</a>
+        </div>
+        <hr /> 
     </div>
 }
 </div>
