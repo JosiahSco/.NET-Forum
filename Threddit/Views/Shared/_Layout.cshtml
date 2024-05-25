@@ -14,7 +14,10 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3">
             <div class="container-fluid d-flex justify-content-between">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Threddit</a>
-                <button id="darkModeToggle" class="btn"><i id="themeIcon" class="fa-solid fa-moon fa-xl m-2"></i></button>
+                <div class="d-flex align-items-center">
+                    <a asp-action="CreatePost" asp-controller="Post" class="btn btn-primary me-2"><i class="fa-solid fa-plus fa-xl"></i> Create</a>
+                    <button id="darkModeToggle" class="btn"><i id="themeIcon" class="fa-solid fa-moon fa-xl m-2"></i></button>
+                </div>
             </div>
         </nav>
     </header>

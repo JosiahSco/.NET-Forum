@@ -4,15 +4,48 @@
     ViewData["Title"] = Model.Title;
 }
 
-<h1>@Model.Title</h1>
-<p><i class="fa-solid fa-user-tie fa-lg m-2"></i>@Model.CreatedBy</p>
-<p><i class="fa-solid fa-calendar-day fa-lg m-2"></i>@Model.CreatedAt</p>
+<div class="d-flex justify-content-between">
+    <h1>@Model.Title</h1>
+    @{
+        if (Model.CreatedBy == User.Identity.Name)
+        {
+            <div class="dropdown">
+                <button class="btn btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a asp-action="EditPost" asp-route-id="@Model.Id" class="dropdown-item">Edit</a></li>
+                    <li>
+                        <form asp-action="DeletePost" asp-controller="Post">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <button type="submit" class="dropdown-item">Delete</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        }
+    }
+</div>
+<p class="mb-1"><i class="fa-solid fa-user-tie fa-lg me-2"></i>@Model.CreatedBy</p>
+<p class="mb-1"><i class="fa-solid fa-calendar-day fa-lg me-2"></i>@Model.CreatedAt</p>
+<div class="d-flex align-items-center">
+    <form asp-action="LikePost" class="d-flex align-items-center">
+        <p class="mb-0">@Model.Likes</p>
+        <input type="hidden" name="id" value="@Model.Id"/>
+        <button type="submit" class="btn me-2"><i class="fa-solid fa-thumbs-up fa-lg"></i></button>
+    </form>
+    <form asp-action="DislikePost" class="d-flex align-items-center">
+        <p class="mb-0">@Model.Dislikes</p>
+        <input type="hidden" name="id" value="@Model.Id" />
+        <button type="submit" class="btn me-2"><i class="fa-solid fa-thumbs-down fa-lg"></i></button>
+    </form>
+</div>
 <p>@Model.Body</p>
 <hr />
 <h3>Comments</h3>
 <form asp-controller="Comment" asp-action="CreateComment" class="mb-3">
     <input type="hidden" name="PostId" value="@Model.Id"/>
-    <textarea name="Body"  class="form-control mb-2" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" ></textarea>
+    <textarea name="Body"  class="form-control mb-2" placeholder="Leave a comment here" id="floatingTextarea2" minlength="2" style="height: 100px" ></textarea>
     <div class="d-flex w-100 justify-content-end">
         <button type="submit" class="btn btn-primary">Submit Comment</button>
     </div>

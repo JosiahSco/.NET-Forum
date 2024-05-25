@@ -7,5 +7,7 @@
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
         public int PostId { get; set; }
+        public int Likes { get; set; }
+        public int Dislikes { get; set; }
     }
 }

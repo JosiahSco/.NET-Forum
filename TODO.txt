@@ -1,4 +1,6 @@
-- Dark mode
-- Allow author to delete post
-- Post details view
-- Comments 
+- Allow author to delete post / Comments
+- Allow author to edit post / comments'
+- Upvotes and downvotes for posts / comments
+- Emoji reactions
+- Gifs for posts / comments?
+- Create polls

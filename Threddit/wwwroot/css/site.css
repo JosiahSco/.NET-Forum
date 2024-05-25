@@ -20,3 +20,26 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+:root {
+    --bs-hover-light: #eaeaea;
+    --bs-hover-dark: #353c42;
+}
+
+html[data-bs-theme='light'] {
+    --bs-hover: var(--bs-hover-light);
+}
+
+html[data-bs-theme='dark'] {
+    --bs-hover: var(--bs-hover-dark);
+}
+
+.post-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+    .post-link:hover {
+        background-color: var(--bs-hover);
+    }
